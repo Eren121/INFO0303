@@ -1,0 +1,44 @@
+<!doctype>
+<html>
+    <head>
+        <meta charset='UTF-8' lang='fr'>
+        <title>Champs avec jQuery</title>
+		
+		<script src='jquery-3.3.1.min.js'></script>
+	</head>
+
+    <body>
+		<div>
+			<select>
+				<option value='masquer'>Masquer</option>
+				<option value='afficher' selected>Afficher</option>
+			</select>
+			<p>Paragraphe avec du texte</p>
+		</div>
+		
+		<div>
+			<textarea>Texte à ajouter</textarea>
+			<input type='button' value='Valider' id='valider'>
+			<p id='insertion'></p>
+		</div>
+		
+        <script>
+		
+			$('select').change(function() {
+				$('select + p').toggle()
+			});
+			
+			$('#valider').click(function() {
+			
+				$('#insertion').append(
+					$('<p>').html($('textarea').val()),
+					$('<input>').prop('type', 'button').val('Supprimer').click(function() {
+			
+						$(this).prev().remove();
+						$(this).remove();
+					})
+				)
+			});
+        </script>
+    </body>
+</html>

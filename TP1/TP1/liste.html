@@ -1,0 +1,56 @@
+<!doctype>
+<html>
+    <head>
+        <meta charset="UTF-8" lang="fr">
+        <title>Champ</title>
+    
+		<style>
+		</style>
+	</head>
+
+    <body>
+        <select onchange='actualiserParagraphe(this)'>
+			<option value="masquer">Masquer</option>
+			<option value="afficher" selected>Afficher</option>
+		</select>
+		<p id='a_masquer'>Paragraphe avec du texte</p>
+		<textarea id='a_ajouter'></textarea>
+		<input onclick="creerParagraphe()" type="button" value="Valider">
+        <p id="insertion"></p>
+		
+        <script>
+			var p = document.getElementById('a_masquer');
+			
+			function actualiserParagraphe(liste) {
+			
+				if(liste.selectedIndex == 0) {
+					p.style.display = "none";
+				} else {
+					p.style.display = "block";
+				}
+			}
+        
+			var txt = document.getElementById('a_ajouter');
+			
+			function creerParagraphe() {
+			
+				var element = document.createElement('p');
+				var bouton = document.createElement('input');
+				bouton.type = 'button';
+				bouton.value = 'Supprimer';
+				bouton.addEventListener('click', supprimerParagraphe);
+				
+				element.appendChild(document.createTextNode(txt.value));
+				element.appendChild(bouton);
+				document.body.appendChild(element);
+			}
+			
+			function supprimerParagraphe() {
+			
+				var p = this.parentElement;
+				p.parentElement.removeChild(p);
+			}
+
+        </script>
+    </body>
+</html>

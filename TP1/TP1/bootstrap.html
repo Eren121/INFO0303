@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+	<head>
+		<title>Bonjour tout le monde </title>
+		<meta charset="UTF-8" lang="fr">
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<h1>Vive l'INFO0303: je sens qu'on va bien s'amuser</h1>
+		
+		<a href="#">News <span class="badge">5</span></a><br>
+		<a href="#">Comments <span class="badge">10</span></a><br>
+		<a href="#">Updates <span class="badge">2</span></a><br>
+		<a href="#">Manger des pâtes <h1 class="badge"> à la sauce tomate</h1></a>
+		
+		<img class="img-responsive" src="image.jpg"><br><br>
+		<a data-toggle="tooltip" title="J'ai faim">Est-ce que t'as faim</a><br>
+		
+		<table class="table">
+			<tr>
+				<td>Pays</td>
+				<td>Age moyen</td>
+			</tr>
+			<tr>
+				<td>France</td>
+				<td>32</td>
+			</tr>
+			<tr>
+				<td>Allemagne</td>
+				<td>40</td>
+			</tr>
+			<tr>
+				<td>Maroc</td>
+				<td>45</td>
+			</tr>
+			<tr>
+				<td>Russie</td>
+				<td>35</td>
+			</tr>
+		</table>
+		
+		<script>
+			$(document).ready(function(){
+				$('[data-toggle="tooltip"]').tooltip();   
+			});
+		</script>
+		
+		<div class="container" style="background-color: cyan;">
+			<h1>Test container non fluide</h1>
+			<p>ça ne prend pas toute la page</p> 
+		</div>
+		<div class="container-fluid" style="background-color: red;">
+			<h1>Test Container fluide</h1>
+			<p>ça prend toute la page</p> 
+		</div>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype>
+<html>
+    <head>
+        <meta charset="UTF-8" lang="fr">
+        <title>Champ</title>
+    </head>
+
+    <body>
+        <input id="message" type="text">
+        <input id="bouton" type="button" value="Envoyer">
+
+        <script>
+            document.getElementById("bouton").onclick = function() {
+
+                console.log("ok");
+
+                //alert(document.getElementById('message').value);
+                document.getElementById('insertion').innerHTML += document.getElementById("message").value + '<br>';
+            }
+        </script>
+
+        <p id="insertion"></p>
+    </body>
+</html>

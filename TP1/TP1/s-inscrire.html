@@ -1,0 +1,135 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="UTF-8" lang="fr">
+		<title>Créer un compte</title>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		<style>
+			main {
+				margin-left: 10px;
+				margin-right: 10px;	
+			}
+			
+			input[type=text], input[type=password] {
+				background-color: #efe;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<main>
+			<form class="needs-validation" action="s-inscrire.html" method="post" novalidate>
+			
+				<div class="form-group">
+				
+					<label for="pseudo">Pseudo :</label>
+						
+					<div class="input-group">
+					
+						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						<input id="pseudo" class="form-control" type="text" pattern="[a-zA-Z]*" minlength="3" placeholder="Pseudo" required>
+						
+					</div>
+				
+				</div>
+				
+				<div class="form-group">
+				
+				
+					<label for="mail">Adresse mail :</label>
+					
+					<div class="input-group">
+					
+						<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+						<input id="mail" class="form-control" type="text" placeholder="Adresse mail" required>
+				
+					</div>
+				
+				</div>
+			
+				<div class="form-group">
+					<label>Sexe :</label>	
+					<div class="radio">
+						<label><input type="radio" value="autre" name="sexe" checked>Autre</label>
+					</div>
+					
+					<div class="radio">
+						<label><input type="radio" value="masculin" name="sexe">Masculin</label>
+					</div>
+					
+					
+					<div class="radio">
+						<label><input type="radio" value="feminin" name="sexe">Féminin</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+				
+					<label>Mot de passe :</label>
+					
+					<div class="input-group">
+					
+						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+						<input class="form-control" id='mdp' type="password" placeholder="Mot de passe" minlength="8" required>
+						
+					</div>
+					<div class="input-group">
+					
+						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+						<input class="form-control" id='mdp-confirm' type="password" placeholder="Confirmation" required>
+
+					</div>
+					
+				</div>
+				
+				<div class="form-group">
+					<div class="checkbox">
+						<label><input type="checkbox" id="eula" required>Accepter les termes</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<input type="submit" class="btn btn-default" value="Créer un compte">
+				</div>
+			</form>
+		</main>	
+		
+		<script>
+			$('input:not([type=radio])').change(function() {
+			
+				var parentElement = $(this).parent();
+				
+				if($(this).prop('type') == 'checkbox') { //La checbox est dans un <label>, et on veut viser le <div class="checkbox"> parent
+					parentElement = parentElement.parent();
+				}
+				
+				var isChecked = this.checkValidity();
+				
+				parentElement.toggleClass('has-success', isChecked);
+				parentElement.toggleClass('has-error', !isChecked);
+			});
+			
+			$('form').submit(function(e) {
+				
+				testPassword();
+				
+				if(!this.checkValidity()) {
+				
+					e.preventDefault();
+					e.stopPropagation();
+				}
+				
+				$('input').change();
+			});
+			
+			function testPassword() {
+			
+				$('mdp-confirm').get().setCustomValidity($('mdp-confirm').val() == $('mdp').val() ? '' : 'Les mots de passes sont différents.');
+			}
+		</script>
+	</body>
+</html>

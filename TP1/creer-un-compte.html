@@ -1,0 +1,97 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="UTF-8" lang="fr">
+		<title>Créer un compte</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<style>
+		</style>
+	</head>
+	
+	<body>
+		<script>
+
+			window.addEventListener('load', function() {
+				var form = document.querySelector('form');
+				var motDePasses = form.querySelectorAll("input[type=password]");
+
+				function testerMotsDePasse() {
+                    var messageErreur = "";
+					var match = (motDePasses[0].value === motDePasses[1].value);
+
+					if(!match) {
+
+						messageErreur = "Les mots de passes sont différents";
+					}
+					else {
+					    var valeur = motDePasses[0].value;
+					    var majuscules = 0, minuscules = 0, speciaux = 0;
+					    for(var i = 0; i < valeur.length; ++i) {
+
+					        var c = valeur.charAt(i);
+
+							if(c >= 'a' && c <= 'z') {
+                                minuscules++;
+							}
+							else if(c >= 'A' && c <= 'Z') {
+							    majuscules++;
+							}
+							else {
+							    speciaux++;
+							}
+						}
+
+                        if(majuscules < 1 || minuscules < 1 || speciaux < 1) {
+                            messageErreur = "Le mot de passe doit contenir au moins une majuscule, une minuscule, et un caractère spécial";
+                        }
+					}
+
+                    motDePasses[0].setCustomValidity(messageErreur);
+				}
+
+                motDePasses[0].addEventListener('change', testerMotsDePasse);
+				motDePasses[1].addEventListener('change', testerMotsDePasse);
+            });
+
+		</script>
+
+		<div class="container">
+			<form>
+
+				<div class="form-group">
+					<input type="text" placeholder="Pseudo" pattern="[a-zA-Z0-9]{3,}" required>
+					<input type="text" placeholder="Adresse mail" required>
+					<br>
+					<p>
+						Sexe:
+						<label>
+							<input type="radio" value="autre" name="sexe" required>
+							Autre
+						</label>
+						<label>
+							<input type="radio" value="masculin" name="sexe" required>
+							Masculin
+						</label>
+						<label>
+							<input type="radio" value="feminin" name="sexe" required>
+							Féminin
+						</label>
+					</p>
+						<input type="password" placeholder="Mot de passe" minlength="8" required>
+						<input type="password" placeholder="Confirmer son mot de passe" minlength="8" required>
+						<label>
+							<input type="checkbox" required>
+							Accepter les termes
+						</label>
+						<label>
+							<input type="submit" value="Créer un compte">
+						</label>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
